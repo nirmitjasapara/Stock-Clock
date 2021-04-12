@@ -44,11 +44,9 @@ export default class Header extends Component {
   render() {
     return (
       <header className='Header'>
-        <h1>
           <Link to='/'>
             <Title className='title'/>
           </Link>
-        </h1>
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
