@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {ReactComponent as Title} from './title.svg';
 import '../App/App.css'
 import './Header.css'
 import TokenService from '../../services/token-service';
@@ -45,7 +46,7 @@ export default class Header extends Component {
       <header className='Header'>
         <h1>
           <Link to='/'>
-          Stock Clock
+            <Title className='title'/>
           </Link>
         </h1>
         {TokenService.hasAuthToken()
