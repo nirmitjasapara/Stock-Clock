@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Graph from '../../components/Graph/Graph'
+import NewsFeed from '../../components/NewsFeed/NewsFeed'
 import ApiService from '../../services/api-service';
 import CustomContext from '../../contexts/CustomContext';
 import './CompanyPage.css'
@@ -31,8 +32,9 @@ export default class CompanyPage extends Component {
         <Graph
             time={this.state.time_data}
         />
-        {/* <NewsFeed
-        /> */}
+        <NewsFeed
+            newslist={{dummydata: []}}
+        />
       </main>
     )
   }
