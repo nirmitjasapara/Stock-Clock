@@ -15,6 +15,19 @@ const ApiService = {
           : res.json()
       )
   },
+  getTimingData(symbol) {
+    const url = `${config.COMPANY_DATA_API_ENDPOINT}/query?function=OVERVIEW&symbol=${symbol}&apikey=${config.COMPANY_DATA_API_KEY}`;
+    console.log(url);
+    return fetch(url, {
+      headers: {
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
   getFollowings() {
     return fetch(`${config.API_ENDPOINT}/stocks`, {
       headers: {

@@ -33,6 +33,10 @@ class App extends Component {
                     component={HomePage}
                 />
                 <PrivateRoute
+                    path={'/company/:symbol'}
+                    component={CompanyPage}
+                />
+                <PrivateRoute
                     path={'/add'}
                     component={AddPage}
                 />
