@@ -31,7 +31,6 @@ export default class Header extends Component {
           className='nav-button'>
           Register
         </Link>
-        <span className='Hyph'>{' - '}</span>
         <Link
           to='/login'
           className='nav-button'>

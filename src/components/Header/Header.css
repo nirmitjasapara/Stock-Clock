@@ -1,6 +1,6 @@
 .Header {
   display: flex;
-  align-items: normal;
+  align-items: flex-end;
   justify-content: space-between;
   position: fixed;
   top: 0px;
@@ -15,31 +15,15 @@
   margin: 0;
 }
 
-.Header h1 a {
-  text-decoration: none;
-}
-
 .Header a {
   color: #444;
+  text-decoration: none;
 }
-
-.log-in {
+.log-in, .log-out {
   display: flex;
   flex-direction: row;
 }
-
-.Hyph {
-  margin-right: 5px;
-  margin-left: 5px;
-}
-
-.log-in .Hyph {
-  display: none;
-}
-
 .nav-button {
-  text-decoration: none;
-  color: #444;
   border: solid #888 2px;
   border-radius: 10px;
   padding: 10px;
@@ -49,7 +33,5 @@
 }
 
 @media screen and (min-width: 450px) {
-  .log-out .Hyph {
-    display: initial;
-  }
+
 }
