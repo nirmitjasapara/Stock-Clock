@@ -9,7 +9,7 @@ export default class NewsFeed extends Component {
     }
 
     renderList() {
-        const newslist = this.props.newslist;
+        const {newslist = []} = this.props;
         return newslist.map(newsitem =>
             <NewsItem
                 key={'news-' + newsitem.id}
@@ -20,7 +20,6 @@ export default class NewsFeed extends Component {
 
   render() {
     const newslist = this.props.newslist;
-    console.log(newslist);
     return (
         <div
         >

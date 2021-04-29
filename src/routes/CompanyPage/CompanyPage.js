@@ -33,7 +33,7 @@ export default class CompanyPage extends Component {
             time={this.state.time_data}
         />
         <NewsFeed
-            newslist={{dummydata: []}}
+            newslist={[]}
         />
       </main>
     )
