@@ -28,7 +28,7 @@ export default class AddForm extends Component {
     })
       .then(res => {
         symbol.value = ''
-        this.props.onAddSuccess(symbol)
+        this.props.onAddSuccess(res.symbol)
       })
       .catch(res => {
         this.setState({ error: res.error })
