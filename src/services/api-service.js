@@ -16,7 +16,7 @@ const ApiService = {
       )
   },
   getTimingData(symbol) {
-    const url = `${config.COMPANY_DATA_API_ENDPOINT}/query?function=OVERVIEW&symbol=${symbol}&apikey=${config.COMPANY_DATA_API_KEY}`;
+    const url = `${config.COMPANY_DATA_API_ENDPOINT}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${config.COMPANY_DATA_API_KEY}`;
     console.log(url);
     return fetch(url, {
       headers: {
