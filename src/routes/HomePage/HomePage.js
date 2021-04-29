@@ -16,15 +16,14 @@ export default class HomePage extends Component {
     this.context.clearError();
     ApiService.getFollowings()
         .catch(this.context.setError)
-        .then(this.context.setFollowings)
-        .then(this.populateCompanyList)
+        .then(this.populateFollowingList)
   }
 
-  populateCompanyList = companies => {
-    this.context.clearCompanies();
+  populateFollowingList = companies => {
+    this.context.clearFollowings();
     Promise.all(companies.map (c => {
         return ApiService.getCompanyData(c.symbol)
-            .then(this.context.addCompany)
+            .then(this.context.addFollowing)
             .catch(this.context.setError)
     }));
   }

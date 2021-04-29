@@ -28,6 +28,19 @@ const ApiService = {
           : res.json()
       )
   },
+  fillCompanyList() {
+    const url = `https://api.iextrading.com/1.0/ref-data/symbols`;
+    console.log(url);
+    return fetch(url, {
+      headers: {
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
   getFollowings() {
     return fetch(`${config.API_ENDPOINT}/stocks`, {
       headers: {

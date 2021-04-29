@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { Button, Input, Required } from '../Utils/Utils'
 import ApiService from '../../services/api-service'
+import CustomContext from '../../contexts/CustomContext';
 
 export default class AddForm extends Component {
+  static contextType = CustomContext
   static defaultProps = {
     onAddSuccess: () => {}
   }
 
   state = { error: null }
+
+  componentDidMount() {
+    this.context.clearError();
+    ApiService.fillCompanyList()
+        .catch(this.context.setError)
+        .then(this.context.setCompanyRef)
+  }
 
   handleSubmit = ev => {
     ev.preventDefault()
@@ -24,6 +33,17 @@ export default class AddForm extends Component {
       .catch(res => {
         this.setState({ error: res.error })
       })
+  }
+
+  renderList() {
+    const { companyref = [] } = this.context
+    return companyref.map(company =>
+        <option
+          value={company.symbol}
+          label={company.name}
+          key={'company-' + company.symbol}
+        />
+    )
   }
 
   render() {
@@ -44,8 +64,12 @@ export default class AddForm extends Component {
             name='symbol'
             type='text'
             required
+            list="companyref"
             id='AddForm__symbol'>
           </Input>
+          <datalist id="companyref">
+            {this.renderList()}
+          </datalist>
         </div>
         <Button type='submit'>
           Add Company

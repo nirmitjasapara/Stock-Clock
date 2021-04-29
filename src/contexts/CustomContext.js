@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 const CustomContext = React.createContext({
   followings: [],
-  companies: [],
+  companyref: [],
   error: null,
   setError: () => {},
   clearError: () => { },
-  setFollowings: () => {},
+  setCompanyRef: () => {},
+  addFollowing: () => {},
   clearFollowings: () => {},
-  addCompany: () => {},
-  clearCompanies: () => {}
+  clearCompanyRef: () => {}
 })
 
 export default CustomContext
@@ -17,7 +17,7 @@ export default CustomContext
 export class CustomProvider extends Component {
   state = {
     followings: [],
-    companies: [],
+    companyref: [],
     error: null
   };
 
@@ -29,30 +29,29 @@ export class CustomProvider extends Component {
   clearError = () => {
     this.setState({ error: null })
   }
-  setFollowings = followings => {
-    this.setState({ followings });
-    return followings;
+  setCompanyRef = companyref => {
+    this.setState({ companyref })
+  }
+  addFollowing = company => {
+    this.setState({ followings: [...this.state.followings, company] })
   }
   clearFollowings = () => {
     this.setState({ followings: [] })
   }
-  addCompany = company => {
-    this.setState({ companies: [...this.state.companies, company] })
-  }
-  clearCompanies = () => {
-    this.setState({ companies: [] })
+  clearCompanyRef = () => {
+    this.setState({ companyref: [] })
   }
   render() {
     const value = {
       followings: this.state.followings,
-      companies: this.state.companies,
+      companyref: this.state.companyref,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setFollowings: this.setFollowings,
+      setCompanyRef: this.setCompanyRef,
+      addFollowing: this.addFollowing,
       clearFollowings: this.clearFollowings,
-      addCompany: this.addCompany,
-      clearCompanies: this.clearCompanies
+      clearCompanyRef: this.clearCompanyRef
     }
     return (
       <CustomContext.Provider value={value}>

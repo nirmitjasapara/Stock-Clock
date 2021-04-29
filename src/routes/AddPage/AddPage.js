@@ -12,8 +12,9 @@ export default class AddPage extends Component {
   }
 
   handleAddSuccess = symbol => {
+    console.log(symbol);
     ApiService.getCompanyData(symbol)
-          .then(this.context.addCompany)
+          .then(this.context.addFollowing)
           .catch(this.context.setError)
     const { history } = this.props
     history.push('/home')

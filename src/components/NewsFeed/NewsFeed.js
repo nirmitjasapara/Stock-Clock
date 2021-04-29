@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import NewsItem from '../../components/NewsItem/NewsItem'
 import './NewsFeed.css'
 
@@ -20,6 +19,7 @@ export default class NewsFeed extends Component {
 
   render() {
     const newslist = this.props.newslist;
+    console.log(newslist);
     return (
         <div
         >

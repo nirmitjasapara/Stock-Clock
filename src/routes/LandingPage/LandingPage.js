@@ -35,7 +35,7 @@ export default class LandingPage extends Component {
                 >Get Started</Link>
         </div>
         <div>
-            <img/>
+            <img alt="placeholder"/>
         </div>
       </main>
     )
