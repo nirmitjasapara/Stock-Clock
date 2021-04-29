@@ -8,6 +8,7 @@ import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import AddPage from '../../routes/AddPage/AddPage';
 import LandingPage from '../../routes/LandingPage/LandingPage';
+import CompanyPage from '../../routes/CompanyPage/CompanyPage';
 import HomePage from '../../routes/HomePage/HomePage';
 import './App.css'
 

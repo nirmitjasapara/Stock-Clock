@@ -9,17 +9,11 @@ export default class Graph extends Component {
 
   render() {
     const time = this.props.time;
-    console.log(company);
+    console.log(time);
     return (
-        <Link
-        to={'/company/' + company["Symbol"]}
-        type='button'
-        className='stock-list-button'
+        <div
         >
-            <p>{company["Symbol"]}</p>
-            <p>{company["Name"]}</p>
-            <p>{company["AnalystTargetPrice"]}</p>
-        </Link>
+        </div>
     )
   }
 }

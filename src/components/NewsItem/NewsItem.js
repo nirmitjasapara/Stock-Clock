@@ -9,7 +9,7 @@ export default class NewsItem extends Component {
 
   render() {
     const newsitem = this.props.newsitem;
-    console.log(company);
+    console.log(newsitem);
     return (
         <div
         className='list-button'
