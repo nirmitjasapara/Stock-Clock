@@ -13,7 +13,7 @@ export default class StockList extends Component {
     const { followings = [] } = this.context
     return followings.map(company =>
         <StockItem
-            key={'company-' + company["Symbol"]}
+            key={'company-' + company.symbol}
             company={company}
         />
     )

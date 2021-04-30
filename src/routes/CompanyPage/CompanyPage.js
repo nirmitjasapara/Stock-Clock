@@ -13,22 +13,41 @@ export default class CompanyPage extends Component {
     },
   }
   state = {
-    time_data: []
+    time_data: [],
+    company_data: {}
   };
 
   componentDidMount() {
     const { symbol } = this.props.match.params;
+    var company = this.context.getCompany(symbol);
+    this.setState({company_data: company});
     this.context.clearError();
     ApiService.getTimingData(symbol)
         .catch(this.context.setError)
         .then((data) => {
             this.setState({time_data: data});
         });
+    if (!company) {
+      console.log("fetched: " + symbol);
+      return ApiService.getCompanyData(symbol)
+            .then(this.context.cacheCompany)
+            .then(c => this.setState({company_data: c}))
+            .catch(this.context.setError)
+    }
   }
 
   render() {
+    var c = this.state.company_data;
     return (
       <main className='company-page-main'>
+        {c ? 
+          <div>
+            <h1>{c["Name"]} ({c["Symbol"]})</h1>
+            <p>{c["Description"]}</p>
+          </div> : 
+          <p className='red'>There was an error, try again</p>
+        }
+      
         <Graph
             time={this.state.time_data}
         />

@@ -12,13 +12,11 @@ export default class StockItem extends Component {
     console.log(company);
     return (
         <Link
-        to={'/company/' + company["Symbol"]}
+        to={'/company/' + company.symbol}
         type='button'
         className='stock-list-button'
         >
-            <p>{company["Symbol"]}</p>
-            <p>{company["Name"]}</p>
-            <p>{company["AnalystTargetPrice"]}</p>
+            <p>{company.symbol}</p>
         </Link>
     )
   }

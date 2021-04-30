@@ -3,13 +3,17 @@ import React, { Component } from 'react'
 const CustomContext = React.createContext({
   followings: [],
   companyref: [],
+  cache: [],
   error: null,
   setError: () => {},
   clearError: () => { },
   setCompanyRef: () => {},
+  clearCompanyRef: () => {},
+  setFollowings: () => {},
   addFollowing: () => {},
   clearFollowings: () => {},
-  clearCompanyRef: () => {}
+  getCompany: () => {},
+  cacheCompany: () => {}
 })
 
 export default CustomContext
@@ -18,6 +22,7 @@ export class CustomProvider extends Component {
   state = {
     followings: [],
     companyref: [],
+    cache: [],
     error: null
   };
 
@@ -32,26 +37,40 @@ export class CustomProvider extends Component {
   setCompanyRef = companyref => {
     this.setState({ companyref })
   }
+  clearCompanyRef = () => {
+    this.setState({ companyref: [] })
+  }
+  setFollowings = followings => {
+    this.setState({ followings })
+  }
   addFollowing = company => {
     this.setState({ followings: [...this.state.followings, company] })
   }
   clearFollowings = () => {
     this.setState({ followings: [] })
   }
-  clearCompanyRef = () => {
-    this.setState({ companyref: [] })
+  getCompany = symbol => {
+    return this.state.cache.find(company => company["Symbol"].toLowerCase() === symbol.toLowerCase())
+  }
+  cacheCompany = company => {
+    this.setState({ cache: [...this.state.cache, company] });
+    return company;
   }
   render() {
     const value = {
       followings: this.state.followings,
       companyref: this.state.companyref,
+      cache: this.state.cache,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
       setCompanyRef: this.setCompanyRef,
+      clearCompanyRef: this.clearCompanyRef,
+      setFollowings: this.setFollowings,
       addFollowing: this.addFollowing,
       clearFollowings: this.clearFollowings,
-      clearCompanyRef: this.clearCompanyRef
+      getCompany: this.getCompany,
+      cacheCompany: this.cacheCompany
     }
     return (
       <CustomContext.Provider value={value}>
