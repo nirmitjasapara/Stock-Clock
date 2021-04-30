@@ -10,10 +10,10 @@ export default class StockList extends Component {
   static contextType = CustomContext
 
   renderList() {
-    const { companies = [] } = this.context
-    return companies.map(company =>
+    const { followings = [] } = this.context
+    return followings.map(company =>
         <StockItem
-            key={'company-' + company.symbol}
+            key={'company-' + company["Symbol"]}
             company={company}
         />
     )

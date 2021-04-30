@@ -14,6 +14,10 @@ const ApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
+      .then(json => {
+        console.log(json);
+        return json;
+      })
   },
   getTimingData(symbol) {
     const url = `${config.COMPANY_DATA_API_ENDPOINT}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${config.COMPANY_DATA_API_KEY}`;

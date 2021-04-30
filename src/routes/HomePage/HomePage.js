@@ -22,10 +22,15 @@ export default class HomePage extends Component {
   populateFollowingList = companies => {
     this.context.clearFollowings();
     Promise.all(companies.map (c => {
+        console.log(c);
         return ApiService.getCompanyData(c.symbol)
             .then(this.context.addFollowing)
+            .then(() => console.log(this.context.followings))
             .catch(this.context.setError)
     }));
+  }
+  filterNotFetched (company) {
+    return !this.context.followings.find(c => c.symbol == company.symbol);
   }
 
   render() {
