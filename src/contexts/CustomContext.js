@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 const CustomContext = React.createContext({
-  followings: null,
+  followings: [],
+  followingsfetched: false,
   tickers: [],
   companyref: [],
   cache: [],
@@ -24,7 +25,8 @@ export default CustomContext
 
 export class CustomProvider extends Component {
   state = {
-    followings: null,
+    followings: [],
+    followingsfetched: false,
     tickers: [],
     companyref: [],
     cache: [],
@@ -46,13 +48,14 @@ export class CustomProvider extends Component {
     this.setState({ companyref: [] })
   }
   setFollowings = followings => {
-    this.setState({ followings })
+    this.setState({ followings, 
+      followingsfetched: true })
   }
   addFollowing = company => {
     this.setState({ followings: [...this.state.followings, company] })
   }
   clearFollowings = () => {
-    this.setState({ followings: null})
+    this.setState({ followings: []})
   }
   setTickers = tickers => {
     this.setState({ tickers })
@@ -73,6 +76,7 @@ export class CustomProvider extends Component {
   render() {
     const value = {
       followings: this.state.followings,
+      followingsfetched: this.state.followingsfetched,
       tickers: this.state.tickers,
       companyref: this.state.companyref,
       cache: this.state.cache,

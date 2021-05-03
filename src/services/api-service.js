@@ -4,9 +4,8 @@ import config from '../config'
 const ApiService = {
   getQuotes(companies) {
     const symbolstring = companies.map((company) => company.symbol).join();
-    console.log(process.env.REACT_APP_TWELVEDATA_API_KEY);
+    const number_of_companies = companies.length;
     const url = `${config.QUOTE_DATA_API_ENDPOINT}/quote?symbol=${symbolstring}&apikey=${config.QUOTE_DATA_API_KEY}`;
-    console.log(url);
     return fetch(url, {
       headers: {
       },
@@ -17,8 +16,7 @@ const ApiService = {
           : res.json()
       )
       .then(json => {
-        console.log(Object.values(json));
-        return Object.values(json);
+        return number_of_companies > 1 ? Object.values(json) : [json];
       })
   },
   getCompanyData(symbol) {

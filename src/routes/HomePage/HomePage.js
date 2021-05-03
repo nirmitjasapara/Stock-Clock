@@ -12,19 +12,21 @@ export default class HomePage extends Component {
     },
   }
   componentDidMount() {
-    let {followings, tickers} = this.context;
-    if (!followings) {
+    let {tickers, followingsfetched} = this.context;
+    if (!followingsfetched) {
       this.context.clearError();
       ApiService.getFollowings()
           .catch(this.context.setError)
           .then(this.context.setFollowings)
           .then(this.fetchTickers)
     }
-    else if (!tickers){
+    else if (!tickers.length){
       this.fetchTickers();
     }
   }
   fetchTickers = () => {
+    if (!this.context.followings.length)
+        return;
     ApiService.getQuotes(this.context.followings)
     .catch(this.context.setError)
     .then(this.context.setTickers)
