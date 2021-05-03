@@ -1,0 +1,122 @@
+.landing-page-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+section {
+    width: 100%;
+}
+#title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    color: #21ce99;
+    padding: 100px;
+}
+.logo-box {
+    border-bottom: #21ce99 solid 3px;
+    position: relative;
+}
+.logo-box h1{
+    margin: 0;
+    font-size: 2em;
+    max-width: 3em;
+    margin-left: 3em;
+}
+.logo-box > img{
+    position: absolute;
+    height: 10em;
+    top: -3em;
+    left: 0;
+}
+#title > p{
+    display: block;
+    width: 25em;
+}
+#description {
+    background-color: white;
+    color: grey;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 100px;
+}
+#description > h1 {
+    color: black;
+}
+.step-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.step > h2{
+    margin-bottom: 2px;
+    display: inline;
+    color: black;
+}
+.step > p{
+    margin-top: 2px;
+}
+.check{
+    float: left;
+    height: 100%;
+    width: auto;
+    margin-right: 20px;
+    color: #232323;
+}
+#feature {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #21ce99;
+    color: white;
+    padding: 10vw;
+    position: relative;
+}
+.feature_text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.feature_text p {
+    display: block;
+    width: 25em;
+}
+#start {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    color: grey;
+    padding: 100px;
+}
+.button-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: solid grey 1px;
+    padding: 10px;
+}
+.get-started-button {
+    background-color: #21ce99;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#start p {
+    display: block;
+    width: 25em;
+}
+.phone {
+    display: none;
+    height: 30em;
+}
+
+@media screen and (min-width: 650px) {
+    .phone {
+        display: block;
+    }
+}

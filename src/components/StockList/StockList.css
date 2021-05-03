@@ -1,6 +1,4 @@
 .stock-list {
-    border: 1px solid black;
-    border-radius: 5px;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -10,21 +8,25 @@
     cursor: pointer;
     width: 50px;
     height: 50px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    border: 1px solid black;
-    background: black;
-    color: white;
+    border: 2px solid white;
+    background: white;
+    color: black;
     border-radius: 100%;
     margin: 5px;
 }
 .add-button:hover {
-    background: white;
-    color: black;
     opacity: 0.8;
+    background: black;
+    color: white;
+}
+.grey {
+    background-color: grey;
+    color:white;
+    padding: 10px;
 }
 @media screen and (min-width: 700px) {
     .stock-list {
@@ -32,12 +34,12 @@
         flex-flow: row wrap;
     }
     .add-button {
-        background: white;
-        color: black;
+        background: black;
+        color: white;
         border-radius: 5px;
     }
     .add-button:hover {
-        background: black;
-        color: white;
+        background: white;
+        color: black;
     }
 }

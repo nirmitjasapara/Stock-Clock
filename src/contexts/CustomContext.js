@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 const CustomContext = React.createContext({
-  followings: [],
+  followings: null,
+  tickers: [],
   companyref: [],
   cache: [],
   error: null,
@@ -12,6 +13,9 @@ const CustomContext = React.createContext({
   setFollowings: () => {},
   addFollowing: () => {},
   clearFollowings: () => {},
+  setTickers: () => {},
+  addTicker: () => {},
+  clearTickers: () => {},
   getCompany: () => {},
   cacheCompany: () => {}
 })
@@ -20,7 +24,8 @@ export default CustomContext
 
 export class CustomProvider extends Component {
   state = {
-    followings: [],
+    followings: null,
+    tickers: [],
     companyref: [],
     cache: [],
     error: null
@@ -47,7 +52,16 @@ export class CustomProvider extends Component {
     this.setState({ followings: [...this.state.followings, company] })
   }
   clearFollowings = () => {
-    this.setState({ followings: [] })
+    this.setState({ followings: null})
+  }
+  setTickers = tickers => {
+    this.setState({ tickers })
+  }
+  addTicker = ticker => {
+    this.setState({ tickers: [...this.state.tickers, ticker] })
+  }
+  clearTickers = () => {
+    this.setState({ tickers: [] })
   }
   getCompany = symbol => {
     return this.state.cache.find(company => company["Symbol"].toLowerCase() === symbol.toLowerCase())
@@ -59,6 +73,7 @@ export class CustomProvider extends Component {
   render() {
     const value = {
       followings: this.state.followings,
+      tickers: this.state.tickers,
       companyref: this.state.companyref,
       cache: this.state.cache,
       error: this.state.error,
@@ -69,6 +84,9 @@ export class CustomProvider extends Component {
       setFollowings: this.setFollowings,
       addFollowing: this.addFollowing,
       clearFollowings: this.clearFollowings,
+      setTickers: this.setTickers,
+      addTicker: this.addTicker,
+      clearTickers: this.clearTickers,
       getCompany: this.getCompany,
       cacheCompany: this.cacheCompany
     }

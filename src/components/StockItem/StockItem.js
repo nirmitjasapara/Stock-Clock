@@ -14,9 +14,14 @@ export default class StockItem extends Component {
         <Link
         to={'/company/' + company.symbol}
         type='button'
-        className='stock-list-button'
+        className={`stock-list-button ${company.percent_change < 0 ? "red" : "green"}`}
         >
-            <p>{company.symbol}</p>
+          <p>{company.name}</p>
+          <p>{company.symbol}</p>
+          <br/>
+          <p>{`${company.close} ${company.currency}`}</p>
+          <p>{`${company.change} ${company.currency}`}</p>
+          <p>{`${company.percent_change}%`}</p>
         </Link>
     )
   }

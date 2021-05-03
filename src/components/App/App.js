@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
-import ApiService from '../../services/api-service';
-import CustomContext from '../../contexts/CustomContext';
 import Header from '../Header/Header';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
@@ -14,13 +12,8 @@ import HomePage from '../../routes/HomePage/HomePage';
 import './App.css'
 
 class App extends Component {
-    static contextType = CustomContext
 
     componentDidMount() {
-      this.context.clearError();
-      ApiService.getFollowings()
-          .catch(this.context.setError)
-          .then(this.context.setFollowings)
     }
     
     renderMainRoutes() {

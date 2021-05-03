@@ -2,6 +2,25 @@ import TokenService from '../services/token-service'
 import config from '../config'
 
 const ApiService = {
+  getQuotes(companies) {
+    const symbolstring = companies.map((company) => company.symbol).join();
+    console.log(process.env.REACT_APP_TWELVEDATA_API_KEY);
+    const url = `${config.QUOTE_DATA_API_ENDPOINT}/quote?symbol=${symbolstring}&apikey=${config.QUOTE_DATA_API_KEY}`;
+    console.log(url);
+    return fetch(url, {
+      headers: {
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+      .then(json => {
+        console.log(Object.values(json));
+        return Object.values(json);
+      })
+  },
   getCompanyData(symbol) {
     const url = `${config.COMPANY_DATA_API_ENDPOINT}/query?function=OVERVIEW&symbol=${symbol}&apikey=${config.COMPANY_DATA_API_KEY}`;
     console.log(url);

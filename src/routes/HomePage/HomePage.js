@@ -11,6 +11,24 @@ export default class HomePage extends Component {
       push: () => {},
     },
   }
+  componentDidMount() {
+    let {followings, tickers} = this.context;
+    if (!followings) {
+      this.context.clearError();
+      ApiService.getFollowings()
+          .catch(this.context.setError)
+          .then(this.context.setFollowings)
+          .then(this.fetchTickers)
+    }
+    else if (!tickers){
+      this.fetchTickers();
+    }
+  }
+  fetchTickers = () => {
+    ApiService.getQuotes(this.context.followings)
+    .catch(this.context.setError)
+    .then(this.context.setTickers)
+  }
   render() {
     return (
       <main className='home-page-main'>

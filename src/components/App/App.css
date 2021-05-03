@@ -6,10 +6,10 @@
 }
 .App {
     min-height: 100vh;
+    background-color: black;
+    color: white;
 }
   
 .App_main {
-  background-color: white;
   overflow: auto;
-  padding-top: var(--nav-height);
 }

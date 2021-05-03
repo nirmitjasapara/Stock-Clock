@@ -10,8 +10,14 @@ export default class StockList extends Component {
   static contextType = CustomContext
 
   renderList() {
-    const { followings = [] } = this.context
-    return followings.map(company =>
+    let { tickers = [], followings = [] } = this.context
+    if (!tickers.length) {
+      if (!followings?.length)
+        return <p className="grey">Please add some companies</p>
+      else
+        tickers = followings;
+    }
+    return tickers.map(company =>
         <StockItem
             key={'company-' + company.symbol}
             company={company}
@@ -22,7 +28,7 @@ export default class StockList extends Component {
   render() {
     return (
       <section className='stock-list'>
-        {this.renderList()}
+        {this.context.error ? <p className="red">Error</p> : this.renderList()}
         <Link
             to='/add'
             type='button'

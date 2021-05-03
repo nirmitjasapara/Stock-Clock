@@ -2,11 +2,12 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  position: fixed;
+  position: sticky;
+  z-index: 11;
   top: 0px;
   left: 0px;
   right: 0px;
-  background-color: white;
+  background-color: black;
   box-shadow: 0px 1px 1px #888;
   height: var(--nav-height);
 }
@@ -16,7 +17,7 @@
 }
 
 .Header a {
-  color: #444;
+  color: red;
   text-decoration: none;
 }
 .log-in, .log-out {
@@ -24,9 +25,8 @@
   flex-direction: row;
 }
 .nav-button {
-  border: solid #888 2px;
-  border-radius: 10px;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
+
 }
 .title {
   height: var(--nav-height);
