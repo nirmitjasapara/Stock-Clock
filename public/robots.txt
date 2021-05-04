@@ -1,3 +1,7 @@
-# https://www.robotstxt.org/robotstxt.html
+Sitemap: ../sitemap.xml
 User-agent: *
-Disallow:
+Crawl-delay: 5
+Disallow: /home
+Disallow: /auth
+Disallow: /company
+
