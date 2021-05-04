@@ -112,7 +112,7 @@ section {
 }
 .phone {
     display: none;
-    height: 30em;
+    height: 15em;
 }
 
 @media screen and (min-width: 650px) {
