@@ -14,6 +14,16 @@ export default class Header extends Component {
     return (
       <div className='log-out'>
         <Link
+          to='/home'
+          className='nav-button'>
+          Home
+        </Link>
+        <Link
+          to='/add'
+          className='nav-button'>
+          Add Stock
+        </Link>
+        <Link
           onClick={this.handleLogoutClick}
           to='/'
           className='nav-button'>

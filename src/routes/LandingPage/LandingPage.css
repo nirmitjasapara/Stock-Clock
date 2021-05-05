@@ -51,6 +51,9 @@ section {
     justify-content: space-between;
     width: 100%;
 }
+.step {
+    display: none;
+}
 .step > h2{
     margin-bottom: 2px;
     display: inline;
@@ -112,11 +115,14 @@ section {
 }
 .phone {
     display: none;
-    height: 30em;
+    height: 15em;
 }
 
 @media screen and (min-width: 650px) {
     .phone {
+        display: block;
+    }
+    .step {
         display: block;
     }
 }
