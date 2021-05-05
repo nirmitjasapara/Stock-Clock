@@ -22,24 +22,14 @@ export default class CompanyPage extends Component {
 
   componentDidMount() {
     const { symbol } = this.props.match.params;
-    var company = this.context.getCompany(symbol);
-    let timeDataValues = [];
-    let priceDataValues = [];
-    const pointerToThis = this;
-    this.setState({ company_data: company });
+
     this.context.clearError();
-    ApiService.getTimingData(symbol)
-      .catch(this.context.setError)
-      .then(data => {
-        for (var key in data["Time Series (Daily)"]) {
-          timeDataValues.push(key);
-          priceDataValues.push(data["Time Series (Daily)"][key]["1. open"]);
-        }
-        pointerToThis.setState({
-          timeData: timeDataValues,
-          priceData: priceDataValues
-        });
-      });
+    this.setCompanyData(symbol);
+    this.setTimingData(symbol);
+  }
+  setCompanyData = symbol => {
+    var company = this.context.getCompany(symbol);
+    this.setState({ company_data: company });
     if (!company) {
       console.log("fetched: " + symbol);
       return ApiService.getCompanyData(symbol)
@@ -47,8 +37,23 @@ export default class CompanyPage extends Component {
         .then(c => this.setState({ company_data: c }))
         .catch(this.context.setError);
     }
-  }
-
+  };
+  setTimingData = symbol => {
+    let timeDataValues = [];
+    let priceDataValues = [];
+    ApiService.getTimingData(symbol)
+      .catch(this.context.setError)
+      .then(data => {
+        for (var key in data["Time Series (Daily)"]) {
+          timeDataValues.push(key);
+          priceDataValues.push(data["Time Series (Daily)"][key]["1. open"]);
+        }
+        this.setState({
+          timeData: timeDataValues,
+          priceData: priceDataValues
+        });
+      });
+  };
   render() {
     var c = this.state.company_data;
     return (
