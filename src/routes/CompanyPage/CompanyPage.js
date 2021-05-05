@@ -63,13 +63,86 @@ data={[
   {
     x: this.state.timeData,
     y: this.state.priceData,
-    type: 'line',
+    type: 'scatters',
     mode: 'lines',
     marker: {color: 'red'},
   }
 ]}
 layout={{width: 1000, height: 440, title: c["Symbol"]}}
+onHover={(data) => {
+var pn='',tn='',urlArr = [],headlineUrl = [];
+for(var i=0; i < data.points.length; i++){
+  pn = data.points[i].pointNumber;
+  tn = data.points[i].curveNumber;
+  let API_Call = `https://finnhub.io/api/v1/company-news?symbol=${c["Symbol"]}&from=${data.points[i].x}&to=${data.points[i].x}&token=c28di0qad3i8rjpb2tdg`;
+  console.log(API_Call);
+  fetch(API_Call)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          for (var i=0; i < data.length; i++) {
+            urlArr.push(data[i].url)
+            headlineUrl.push(data[i].headline)
+
+          }
+          var myDiv = document.getElementById("news");
+          urlArr.forEach((x,i)=> 
+          {
+            
+            myDiv.innerHTML +=`<li><a href ="${x}">${headlineUrl[i]}</a></li>`;
+
+          })
+
+
+                })
+
+};
+
+
+}
+
+}
+onRelayout={(data) => {
+  var start ='',end = '',urlArr = [],headlineUrl = [];
+  start = data['xaxis.range[0]'].split(' ')[0];
+  end = data['xaxis.range[1]'].split(' ')[0];
+  
+
+  let API_Call = `https://finnhub.io/api/v1/company-news?symbol=${c["Symbol"]}&from=${start}&to=${end}&token=c28di0qad3i8rjpb2tdg`;
+  console.log(API_Call)
+  fetch(API_Call)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          for (var i=0; i < data.length; i++) {
+            urlArr.push(data[i].url)
+            headlineUrl.push(data[i].headline)
+
+          }
+          var myDiv = document.getElementById("news");
+          urlArr.forEach((x,i)=> 
+          {
+            
+            myDiv.innerHTML +=`<li><a href ="${x}">${headlineUrl[i]}</a></li>`;
+
+          })
+        })
+  }
+  
+  }
+
 />
+
+<div id="news">
+</div>
           </div> : 
           <p className='red'>There was an error, try again</p>
         }
