@@ -70,6 +70,8 @@ data={[
 ]}
 layout={{width: 1000, height: 440, title: c["Symbol"]}}
 onHover={(data) => {
+  document.getElementById("news").innerHTML="";
+
 var pn='',tn='',urlArr = [],headlineUrl = [];
 for(var i=0; i < data.points.length; i++){
   pn = data.points[i].pointNumber;
@@ -90,8 +92,7 @@ for(var i=0; i < data.points.length; i++){
 
           }
           var myDiv = document.getElementById("news");
-          urlArr.forEach((x,i)=> 
-          {
+          urlArr.forEach((x,i)=> {
             
             myDiv.innerHTML +=`<li><a href ="${x}">${headlineUrl[i]}</a></li>`;
 
@@ -107,6 +108,8 @@ for(var i=0; i < data.points.length; i++){
 
 }
 onRelayout={(data) => {
+  document.getElementById("news").innerHTML="";
+
   var start ='',end = '',urlArr = [],headlineUrl = [];
   start = data['xaxis.range[0]'].split(' ')[0];
   end = data['xaxis.range[1]'].split(' ')[0];
