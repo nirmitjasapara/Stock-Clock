@@ -7,10 +7,24 @@ export default class NewsItem extends Component {
   };
   dateTimeAdapter = timestamp => {
     var a = new Date(timestamp * 1000);
+    var months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
     var y = a.getFullYear();
-    var m = a.getMonth();
+    var m = months[a.getMonth()];
     var d = a.getDate();
-    return `${m}/${d}/${y}`;
+    return `${m} ${d},${y}`;
   };
   render() {
     const newsitem = this.props.newsitem;
