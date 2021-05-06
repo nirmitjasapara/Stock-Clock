@@ -70,32 +70,49 @@ export default class CompanyPage extends Component {
       this.state.end
     );
   };
+  renderTable = c => {
+    const keys = [
+      "52WeekHigh",
+      "52WeekLow",
+      "50DayMovingAverage",
+      "200DayMovingAverage",
+      "AnalystTargetPrice",
+      "SharesFloat",
+      "SharesShort",
+      "EPS",
+      "ProfitMargin",
+      "DividendPerShare"
+    ];
+    return keys.map(k => (
+      <div className="table-entry">
+        <p>{k}</p>
+        <p>{c[k]}</p>
+      </div>
+    ));
+  };
   render() {
     var c = this.state.company_data;
     console.log(c);
-    return (
+    return c ? (
       <main className="company-page-main">
-        {c ? (
-          <div>
-            <h1>
-              {c["Name"]} ({c["Symbol"]})
-            </h1>
-            <details>
-              <summary>Company Details:</summary>
-              <p>{c["Description"]}</p>
-            </details>
-            <Graph
-              onGraphChange={this.onGraphChange}
-              title={c["Symbol"]}
-              x={this.state.timeData}
-              y={this.state.priceData}
-            />
-            <NewsFeed newslist={this.state.newsData} />
-          </div>
-        ) : (
-          <p className="red">There was an error, try again</p>
-        )}
+        <h1>
+          {c["Name"]} ({c["Symbol"]})
+        </h1>
+        <details>
+          <summary>Company Details:</summary>
+          <p>{c["Description"]}</p>
+        </details>
+        <Graph
+          onGraphChange={this.onGraphChange}
+          title={c["Symbol"]}
+          x={this.state.timeData}
+          y={this.state.priceData}
+        />
+        <section id="data-table">{this.renderTable(c)}</section>
+        <NewsFeed newslist={this.state.newsData} />
       </main>
+    ) : (
+      <p className="red">There was an error, try again</p>
     );
   }
 }
