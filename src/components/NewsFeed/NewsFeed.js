@@ -15,6 +15,10 @@ export default class NewsFeed extends Component {
   }
 
   render() {
-    return <div>{this.renderList()}</div>;
+    return (
+      <section>
+        <ul>{this.renderList()}</ul>
+      </section>
+    );
   }
 }

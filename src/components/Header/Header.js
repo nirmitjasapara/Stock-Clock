@@ -1,65 +1,54 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import {ReactComponent as Title} from './title.svg';
-import '../App/App.css'
-import './Header.css'
-import TokenService from '../../services/token-service';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { ReactComponent as Title } from "./title.svg";
+import "../App/App.css";
+import "./Header.css";
+import TokenService from "../../services/token-service";
 
 export default class Header extends Component {
   handleLogoutClick = () => {
-    TokenService.clearAuthToken()
-  }
+    TokenService.clearAuthToken();
+  };
 
   renderLogoutLink() {
     return (
-      <div className='log-out'>
-        <Link
-          to='/home'
-          className='nav-button'>
+      <nav className="log-out">
+        <Link to="/home" className="nav-button">
           Home
         </Link>
-        <Link
-          to='/add'
-          className='nav-button'>
+        <Link to="/add" className="nav-button">
           Add Stock
         </Link>
-        <Link
-          onClick={this.handleLogoutClick}
-          to='/'
-          className='nav-button'>
+        <Link onClick={this.handleLogoutClick} to="/" className="nav-button">
           Logout
         </Link>
-      </div>
-    )
+      </nav>
+    );
   }
 
   renderLoginLink() {
     return (
-      <div className='log-in'>
-        <Link
-          to='/register'
-          className='nav-button'>
+      <nav className="log-in">
+        <Link to="/register" className="nav-button">
           Register
         </Link>
-        <Link
-          to='/login'
-          className='nav-button'>
+        <Link to="/login" className="nav-button">
           Log in
         </Link>
-      </div>
-    )
+      </nav>
+    );
   }
 
   render() {
     return (
-      <header className='Header'>
-          <Link to='/'>
-            <Title className='title'/>
-          </Link>
+      <header className="Header">
+        <Link to="/">
+          <Title className="title" />
+        </Link>
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
       </header>
-    )
+    );
   }
 }

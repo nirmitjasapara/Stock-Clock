@@ -80,7 +80,10 @@ export default class CompanyPage extends Component {
             <h1>
               {c["Name"]} ({c["Symbol"]})
             </h1>
-            <p>{c["Description"]}</p>
+            <details>
+              <summary>Company Details:</summary>
+              <p>{c["Description"]}</p>
+            </details>
             <Graph
               onGraphChange={this.onGraphChange}
               title={c["Symbol"]}
