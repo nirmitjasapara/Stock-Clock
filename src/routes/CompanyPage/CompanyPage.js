@@ -84,7 +84,7 @@ export default class CompanyPage extends Component {
       "DividendPerShare"
     ];
     return keys.map(k => (
-      <div className="table-entry">
+      <div key={k} className="table-entry">
         <p>{k}</p>
         <p>{c[k]}</p>
       </div>
@@ -92,7 +92,6 @@ export default class CompanyPage extends Component {
   };
   render() {
     var c = this.state.company_data;
-    console.log(c);
     return c ? (
       <main className="company-page-main">
         <h1>

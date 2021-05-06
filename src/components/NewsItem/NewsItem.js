@@ -30,8 +30,13 @@ export default class NewsItem extends Component {
     const newsitem = this.props.newsitem;
     return (
       <li className="news-item">
-        <a className="news-link" href={newsitem.url} target="_blank">
-          <img src={newsitem.image} alt="news-image" />
+        <a
+          className="news-link"
+          href={newsitem.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={newsitem.image} alt="news" />
           <div className="col-2">
             <h3>{newsitem.headline}</h3>
             <p>{this.dateTimeAdapter(newsitem.datetime)}</p>
