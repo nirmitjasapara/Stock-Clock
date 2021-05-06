@@ -28,7 +28,6 @@ export default class NewsItem extends Component {
   };
   render() {
     const newsitem = this.props.newsitem;
-    console.log(newsitem);
     return (
       <li className="news-item">
         <a className="news-link" href={newsitem.url} target="_blank">

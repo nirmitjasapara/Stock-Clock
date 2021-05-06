@@ -1,8 +1,8 @@
 h2 {
-    margin-block-start: 0px;
+  margin-block-start: 0px;
 }
 .registration-page-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

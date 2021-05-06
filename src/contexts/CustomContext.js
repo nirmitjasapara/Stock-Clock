@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 const CustomContext = React.createContext({
   followings: [],
@@ -8,7 +8,7 @@ const CustomContext = React.createContext({
   cache: [],
   error: null,
   setError: () => {},
-  clearError: () => { },
+  clearError: () => {},
   setCompanyRef: () => {},
   clearCompanyRef: () => {},
   setFollowings: () => {},
@@ -19,9 +19,9 @@ const CustomContext = React.createContext({
   clearTickers: () => {},
   getCompany: () => {},
   cacheCompany: () => {}
-})
+});
 
-export default CustomContext
+export default CustomContext;
 
 export class CustomProvider extends Component {
   state = {
@@ -34,45 +34,46 @@ export class CustomProvider extends Component {
   };
 
   setError = error => {
-    console.error(error)
-    this.setState({ error })
-  }
+    console.error(error);
+    this.setState({ error });
+  };
 
   clearError = () => {
-    this.setState({ error: null })
-  }
+    this.setState({ error: null });
+  };
   setCompanyRef = companyref => {
-    this.setState({ companyref })
-  }
+    this.setState({ companyref });
+  };
   clearCompanyRef = () => {
-    this.setState({ companyref: [] })
-  }
+    this.setState({ companyref: [] });
+  };
   setFollowings = followings => {
-    this.setState({ followings, 
-      followingsfetched: true })
-  }
+    this.setState({ followings, followingsfetched: true });
+  };
   addFollowing = company => {
-    this.setState({ followings: [...this.state.followings, company] })
-  }
+    this.setState({ followings: [...this.state.followings, company] });
+  };
   clearFollowings = () => {
-    this.setState({ followings: []})
-  }
+    this.setState({ followings: [] });
+  };
   setTickers = tickers => {
-    this.setState({ tickers })
-  }
+    this.setState({ tickers });
+  };
   addTicker = ticker => {
-    this.setState({ tickers: [...this.state.tickers, ticker] })
-  }
+    this.setState({ tickers: [...this.state.tickers, ticker] });
+  };
   clearTickers = () => {
-    this.setState({ tickers: [] })
-  }
+    this.setState({ tickers: [] });
+  };
   getCompany = symbol => {
-    return this.state.cache.find(company => company["Symbol"].toLowerCase() === symbol.toLowerCase())
-  }
+    return this.state.cache.find(
+      company => company["Symbol"].toLowerCase() === symbol.toLowerCase()
+    );
+  };
   cacheCompany = company => {
     this.setState({ cache: [...this.state.cache, company] });
     return company;
-  }
+  };
   render() {
     const value = {
       followings: this.state.followings,
@@ -93,11 +94,11 @@ export class CustomProvider extends Component {
       clearTickers: this.clearTickers,
       getCompany: this.getCompany,
       cacheCompany: this.cacheCompany
-    }
+    };
     return (
       <CustomContext.Provider value={value}>
         {this.props.children}
       </CustomContext.Provider>
-    )
+    );
   }
 }

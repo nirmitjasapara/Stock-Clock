@@ -32,7 +32,6 @@ export default class CompanyPage extends Component {
     var company = this.context.getCompany(symbol);
     this.setState({ company_data: company });
     if (!company) {
-      console.log("fetched: " + symbol);
       return ApiService.getCompanyData(symbol)
         .then(this.context.cacheCompany)
         .then(c => this.setState({ company_data: c }))
@@ -73,6 +72,7 @@ export default class CompanyPage extends Component {
   };
   render() {
     var c = this.state.company_data;
+    console.log(c);
     return (
       <main className="company-page-main">
         {c ? (

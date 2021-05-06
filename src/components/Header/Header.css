@@ -20,7 +20,8 @@
   color: red;
   text-decoration: none;
 }
-.log-in, .log-out {
+.log-in,
+.log-out {
   display: flex;
   flex-direction: row;
 }
@@ -36,5 +37,4 @@
 }
 
 @media screen and (min-width: 450px) {
-
 }
