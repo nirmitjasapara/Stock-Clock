@@ -5,15 +5,26 @@ export default class NewsItem extends Component {
   static defaultProps = {
     newsitem: {}
   };
-
+  dateTimeAdapter = timestamp => {
+    var a = new Date(timestamp * 1000);
+    var y = a.getFullYear();
+    var m = a.getMonth();
+    var d = a.getDate();
+    return `${m}/${d}/${y}`;
+  };
   render() {
     const newsitem = this.props.newsitem;
     console.log(newsitem);
     return (
-      <div className="news-item">
-        <p>{newsitem.headline}</p>
-        <p>{newsitem.url}</p>
-      </div>
+      <a className="news-link" href={newsitem.url} target="_blank">
+        <div className="news-item">
+          <img src={newsitem.image} alt="news-image" />
+          <div className="col-2">
+            <h3>{newsitem.headline}</h3>
+            <p>{this.dateTimeAdapter(newsitem.datetime)}</p>
+          </div>
+        </div>
+      </a>
     );
   }
 }
