@@ -1,7 +1,10 @@
 .company-page-main {
   padding: 20px;
 }
-#data-table {
+#statistics h2 {
+  margin-top: 20px;
+}
+.data-table {
   display: flex;
   flex-flow: row wrap;
 }

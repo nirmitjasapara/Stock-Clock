@@ -108,7 +108,10 @@ export default class CompanyPage extends Component {
           x={this.state.timeData}
           y={this.state.priceData}
         />
-        <section id="data-table">{this.renderTable(c)}</section>
+        <section id="statistics">
+          <h2>Statistics</h2>
+          <div className="data-table">{this.renderTable(c)}</div>
+        </section>
         <NewsFeed newslist={this.state.newsData} />
       </main>
     ) : (

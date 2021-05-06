@@ -16,7 +16,8 @@ export default class NewsFeed extends Component {
 
   render() {
     return (
-      <section>
+      <section id="newsfeed">
+        <h2>News Feed</h2>
         <ul className="news-list">{this.renderList()}</ul>
       </section>
     );
