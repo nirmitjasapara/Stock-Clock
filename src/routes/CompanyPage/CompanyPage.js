@@ -85,7 +85,7 @@ export default class CompanyPage extends Component {
     ];
     return keys.map(k => (
       <div key={k} className="table-entry">
-        <p>{k}</p>
+        <p>{k.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")}</p>
         <p>{c[k]}</p>
       </div>
     ));
