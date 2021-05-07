@@ -9,9 +9,9 @@
 }
 .news-item img {
   max-height: 10em;
-  max-width: 20em;
   width: 20vw;
   height: auto;
+  object-fit: contain;
 }
 .news-link {
   display: flex;
