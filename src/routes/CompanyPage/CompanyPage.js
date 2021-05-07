@@ -48,10 +48,17 @@ export default class CompanyPage extends Component {
           timeDataValues.push(key);
           priceDataValues.push(data["Time Series (Daily)"][key]["1. open"]);
         }
+        const lastdate = timeDataValues[0];
         this.setState({
           timeData: timeDataValues,
-          priceData: priceDataValues
+          priceData: priceDataValues,
+          start: lastdate,
+          end: lastdate
         });
+        return lastdate;
+      })
+      .then(lastdate => {
+        this.setNewsData(symbol, lastdate, lastdate);
       });
   };
   setNewsData = (symbol, start, end) => {
