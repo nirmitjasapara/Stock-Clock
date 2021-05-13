@@ -9,6 +9,8 @@ export default class NewsFeed extends Component {
 
   renderList() {
     const { newslist = [] } = this.props;
+    if (!newslist.length)
+      return <p className="empty-news">There is no news for this day.</p>;
     return newslist.map(newsitem => (
       <NewsItem key={"news-" + newsitem.id} newsitem={newsitem} />
     ));

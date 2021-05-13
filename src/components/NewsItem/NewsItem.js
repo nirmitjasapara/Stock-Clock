@@ -24,7 +24,7 @@ export default class NewsItem extends Component {
     var y = a.getFullYear();
     var m = months[a.getMonth()];
     var d = a.getDate();
-    return `${m} ${d},${y}`;
+    return `${m} ${d}, ${y}`;
   };
   render() {
     const newsitem = this.props.newsitem;

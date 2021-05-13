@@ -6,6 +6,7 @@ const ApiService = {
     const symbolstring = companies.map(company => company.symbol).join();
     const number_of_companies = companies.length;
     const url = `${config.QUOTE_DATA_API_ENDPOINT}/quote?symbol=${symbolstring}&apikey=${config.QUOTE_DATA_API_KEY}`;
+    console.log(url);
     return fetch(url, {
       headers: {}
     })
