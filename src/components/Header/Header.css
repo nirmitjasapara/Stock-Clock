@@ -24,17 +24,19 @@
 .log-out {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .nav-button {
   padding: 10px 20px 10px 20px;
-  border-left: solid grey 2px;
-  border-right: solid grey 2px;
-  border-top: solid transparent 5px;
-  border-bottom: solid transparent 5px;
+}
+.nav-button:hover {
+  border-bottom: #21ce99 solid 2px;
+}
+.divider {
+  color: grey;
 }
 .title {
   height: var(--nav-height);
-}
-
-@media screen and (min-width: 450px) {
+  width: calc(var(--nav-height) * 6 / 5);
 }

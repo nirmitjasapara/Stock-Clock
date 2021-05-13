@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Title } from "./vectorpaint.svg";
+import { ReactComponent as Title } from "./title.svg";
 import "../App/App.css";
 import "./Header.css";
 import TokenService from "../../services/token-service";
@@ -16,9 +16,11 @@ export default class Header extends Component {
         <Link to="/home" className="nav-button">
           Home
         </Link>
+        <span className="divider">|</span>
         <Link to="/add" className="nav-button">
           Add Stock
         </Link>
+        <span className="divider">|</span>
         <Link onClick={this.handleLogoutClick} to="/" className="nav-button">
           Logout
         </Link>
@@ -32,6 +34,7 @@ export default class Header extends Component {
         <Link to="/register" className="nav-button">
           Register
         </Link>
+        <span className="divider">|</span>
         <Link to="/login" className="nav-button">
           Log in
         </Link>
