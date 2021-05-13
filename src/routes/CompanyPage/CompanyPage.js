@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Graph from "../../components/Graph/Graph";
 import NewsFeed from "../../components/NewsFeed/NewsFeed";
+import Pagination from "../../components/Pagination/Pagination";
 import ApiService from "../../services/api-service";
 import CustomContext from "../../contexts/CustomContext";
 import "./CompanyPage.css";
@@ -22,7 +23,8 @@ export default class CompanyPage extends Component {
     newsDataError: null,
 
     start: null,
-    end: null
+    end: null,
+    page: 1
   };
 
   componentDidMount() {
@@ -67,7 +69,7 @@ export default class CompanyPage extends Component {
   };
   setNewsData = (symbol, start, end) => {
     ApiService.getNewsData(symbol, start, end)
-      .then(d => this.setState({ newsData: d }))
+      .then(d => this.setState({ newsData: d, page: 1 }))
       .catch(e => this.setState({ newsDataError: e }));
   };
   onGraphChange = (start, end) => {
@@ -80,6 +82,9 @@ export default class CompanyPage extends Component {
       this.state.start,
       this.state.end
     );
+  };
+  onPageChange = page => {
+    this.setState({ page });
   };
   renderTable = c => {
     const keys = [
@@ -131,7 +136,11 @@ export default class CompanyPage extends Component {
           <h2>Statistics</h2>
           <div className="data-table">{this.renderTable(c)}</div>
         </section>
-        <NewsFeed newslist={this.state.newsData} />
+        <NewsFeed page={this.state.page} newslist={this.state.newsData} />
+        <Pagination
+          onPageChange={this.onPageChange}
+          pageCount={(this.state.newsData.length / 10 + 1) >> 0}
+        />
       </main>
     ) : (
       <p>Loading</p>

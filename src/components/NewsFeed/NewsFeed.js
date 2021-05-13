@@ -4,16 +4,20 @@ import "./NewsFeed.css";
 
 export default class NewsFeed extends Component {
   static defaultProps = {
-    newslist: []
+    newslist: [],
+    page: 1
   };
 
   renderList() {
-    const { newslist = [] } = this.props;
+    const { newslist = [], page } = this.props;
     if (!newslist.length)
       return <p className="empty-news">There is no news for this day.</p>;
-    return newslist.map(newsitem => (
-      <NewsItem key={"news-" + newsitem.id} newsitem={newsitem} />
-    ));
+    else {
+      const cutnewslist = newslist.slice((page - 1) * 10, page * 10);
+      return cutnewslist.map(newsitem => (
+        <NewsItem key={"news-" + newsitem.id} newsitem={newsitem} />
+      ));
+    }
   }
 
   render() {
