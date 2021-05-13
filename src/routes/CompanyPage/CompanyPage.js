@@ -140,6 +140,7 @@ export default class CompanyPage extends Component {
         <Pagination
           onPageChange={this.onPageChange}
           pageCount={(this.state.newsData.length / 10 + 1) >> 0}
+          page={this.state.page}
         />
       </main>
     ) : (

@@ -16,3 +16,9 @@
   height: 50px;
   cursor: pointer;
 }
+.page-button:hover {
+  background-color: darkgrey;
+}
+.selected {
+  background-color: #21ce99;
+}
