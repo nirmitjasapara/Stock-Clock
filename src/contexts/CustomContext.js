@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
+export const StatusCodes = {
+  INIT: "init",
+  FOLLOWINGS_FETCHED: "followings",
+  TICKERS_FETCHED: "tickers"
+};
+
 const CustomContext = React.createContext({
   followings: [],
-  followingsfetched: false,
+  fetchstatus: StatusCodes.INIT,
   tickers: [],
   companyref: [],
   cache: [],
@@ -13,6 +19,7 @@ const CustomContext = React.createContext({
   clearCompanyRef: () => {},
   setFollowings: () => {},
   addFollowing: () => {},
+  removeFollowing: () => {},
   clearFollowings: () => {},
   setTickers: () => {},
   addTicker: () => {},
@@ -26,7 +33,7 @@ export default CustomContext;
 export class CustomProvider extends Component {
   state = {
     followings: [],
-    followingsfetched: false,
+    fetchstatus: StatusCodes.INIT,
     tickers: [],
     companyref: [],
     cache: [],
@@ -48,16 +55,25 @@ export class CustomProvider extends Component {
     this.setState({ companyref: [] });
   };
   setFollowings = followings => {
-    this.setState({ followings, followingsfetched: true });
+    this.setState({ followings, fetchstatus: StatusCodes.FOLLOWINGS_FETCHED });
   };
   addFollowing = company => {
     this.setState({ followings: [...this.state.followings, company] });
+  };
+  removeFollowing = id => {
+    const symbol = this.state.followings.find(c => c.id === id).symbol;
+    this.setState({
+      followings: this.state.followings.filter(c => c.id !== id),
+      tickers: this.state.tickers.filter(
+        c => c.symbol.toLowerCase() !== symbol.toLowerCase()
+      )
+    });
   };
   clearFollowings = () => {
     this.setState({ followings: [] });
   };
   setTickers = tickers => {
-    this.setState({ tickers });
+    this.setState({ tickers, fetchstatus: StatusCodes.TICKERS_FETCHED });
   };
   addTicker = ticker => {
     this.setState({ tickers: [...this.state.tickers, ticker] });
@@ -77,7 +93,7 @@ export class CustomProvider extends Component {
   render() {
     const value = {
       followings: this.state.followings,
-      followingsfetched: this.state.followingsfetched,
+      fetchstatus: this.state.fetchstatus,
       tickers: this.state.tickers,
       companyref: this.state.companyref,
       cache: this.state.cache,
@@ -88,6 +104,7 @@ export class CustomProvider extends Component {
       clearCompanyRef: this.clearCompanyRef,
       setFollowings: this.setFollowings,
       addFollowing: this.addFollowing,
+      removeFollowing: this.removeFollowing,
       clearFollowings: this.clearFollowings,
       setTickers: this.setTickers,
       addTicker: this.addTicker,

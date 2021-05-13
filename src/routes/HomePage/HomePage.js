@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import StockList from "../../components/StockList/StockList";
 import ApiService from "../../services/api-service";
-import CustomContext from "../../contexts/CustomContext";
+import CustomContext, { StatusCodes } from "../../contexts/CustomContext";
 import "./HomePage.css";
 
 export default class HomePage extends Component {
@@ -12,14 +12,14 @@ export default class HomePage extends Component {
     }
   };
   componentDidMount() {
-    let { tickers, followingsfetched } = this.context;
-    if (!followingsfetched) {
+    let { fetchstatus } = this.context;
+    if (fetchstatus === StatusCodes.INIT) {
       this.context.clearError();
       ApiService.getFollowings()
         .catch(this.context.setError)
         .then(this.context.setFollowings)
         .then(this.fetchTickers);
-    } else if (!tickers.length) {
+    } else if (fetchstatus === StatusCodes.FOLLOWINGS_FETCHED) {
       this.fetchTickers();
     }
   }

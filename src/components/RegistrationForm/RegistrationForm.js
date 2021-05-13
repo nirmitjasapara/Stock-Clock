@@ -35,7 +35,7 @@ export default class RegistrationForm extends Component {
     var pass = document.getElementById("RegistrationForm__password");
     var vpass = document.getElementById("RegistrationForm__vpassword");
     vpass.setCustomValidity(
-      vpass.value == pass.value ? "" : "Passwords don't match"
+      vpass.value === pass.value ? "" : "Passwords don't match"
     );
   };
 

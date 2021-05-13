@@ -13,12 +13,16 @@ export default class CompanyPage extends Component {
     }
   };
   state = {
+    companyData: {},
+    companyDataError: null,
     timeData: [],
     priceData: [],
+    timingDataError: null,
     newsData: [],
+    newsDataError: null,
+
     start: null,
-    end: null,
-    company_data: {}
+    end: null
   };
 
   componentDidMount() {
@@ -30,19 +34,19 @@ export default class CompanyPage extends Component {
   }
   setCompanyData = symbol => {
     var company = this.context.getCompany(symbol);
-    this.setState({ company_data: company });
+    this.setState({ companyData: company });
     if (!company) {
       return ApiService.getCompanyData(symbol)
         .then(this.context.cacheCompany)
-        .then(c => this.setState({ company_data: c }))
-        .catch(this.context.setError);
+        .then(c => this.setState({ companyData: c }))
+        .catch(e => this.setState({ companyDataError: e }));
     }
   };
   setTimingData = symbol => {
     let timeDataValues = [];
     let priceDataValues = [];
     ApiService.getTimingData(symbol)
-      .catch(this.context.setError)
+      .catch(e => this.setState({ timingDataError: e }))
       .then(data => {
         for (var key in data["Time Series (Daily)"]) {
           timeDataValues.push(key);
@@ -64,7 +68,7 @@ export default class CompanyPage extends Component {
   setNewsData = (symbol, start, end) => {
     ApiService.getNewsData(symbol, start, end)
       .then(d => this.setState({ newsData: d }))
-      .catch(this.context.setError);
+      .catch(e => this.setState({ newsDataError: e }));
   };
   onGraphChange = (start, end) => {
     this.setState({
@@ -72,7 +76,7 @@ export default class CompanyPage extends Component {
       end
     });
     this.setNewsData(
-      this.state.company_data["Symbol"],
+      this.state.companyData["Symbol"],
       this.state.start,
       this.state.end
     );
@@ -98,9 +102,18 @@ export default class CompanyPage extends Component {
     ));
   };
   render() {
-    var c = this.state.company_data;
+    var c = this.state.companyData;
     return c ? (
       <main className="company-page-main">
+        {this.state.companyDataError && (
+          <p className="red">Failed Company Information API fetch</p>
+        )}
+        {this.state.timingDataError && (
+          <p className="red">Failed Graph Information API fetch</p>
+        )}
+        {this.state.newsDataError && (
+          <p className="red">Failed News API fetch</p>
+        )}
         <h1>
           {c["Name"]} ({c["Symbol"]})
         </h1>
@@ -121,7 +134,7 @@ export default class CompanyPage extends Component {
         <NewsFeed newslist={this.state.newsData} />
       </main>
     ) : (
-      <p className="red">There was an error, try again</p>
+      <p>Loading</p>
     );
   }
 }

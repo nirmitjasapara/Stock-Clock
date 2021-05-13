@@ -12,8 +12,6 @@ import HomePage from "../../routes/HomePage/HomePage";
 import "./App.css";
 
 class App extends Component {
-  componentDidMount() {}
-
   renderMainRoutes() {
     return (
       <Switch>

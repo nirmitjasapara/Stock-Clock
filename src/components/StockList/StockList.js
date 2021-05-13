@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CustomContext from "../../contexts/CustomContext";
+import CustomContext, { StatusCodes } from "../../contexts/CustomContext";
 import StockItem from "../../components/StockItem/StockItem";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,27 +9,54 @@ import "./StockList.css";
 export default class StockList extends Component {
   static contextType = CustomContext;
 
-  renderList() {
-    let { tickers = [], followings = [] } = this.context;
-    if (!tickers.length) {
-      if (!followings?.length)
-        return <p className="grey">Please add some companies</p>;
-      else tickers = followings;
+  renderEmpty() {
+    return <p className="grey">Please add some companies</p>;
+  }
+
+  renderLoading() {
+    return <p>Loading</p>;
+  }
+
+  renderItems(companies, status) {
+    if (!companies.length) return this.renderEmpty();
+    else {
+      const f = this.context.followings;
+      return companies.map(company => {
+        const id = f.find(
+          c => c.symbol.toLowerCase() === company.symbol.toLowerCase()
+        ).id;
+        return (
+          <StockItem
+            key={"company-" + company.symbol}
+            company={company}
+            status={status}
+            id={id}
+          />
+        );
+      });
     }
-    return tickers.map(company => (
-      <StockItem key={"company-" + company.symbol} company={company} />
-    ));
+  }
+
+  renderList() {
+    let { tickers = [], followings = [], fetchstatus } = this.context;
+    switch (fetchstatus) {
+      case StatusCodes.INIT:
+        return this.renderLoading();
+      case StatusCodes.FOLLOWINGS_FETCHED:
+        return this.renderItems(followings, fetchstatus);
+      case StatusCodes.TICKERS_FETCHED:
+        return this.renderItems(tickers, fetchstatus);
+      default:
+        break;
+    }
   }
 
   render() {
     return (
       <section className="stocks">
+        {this.context.error && <p className="red">Failed API fetch</p>}
         <ul className="stocks-list">
-          {this.context.error ? (
-            <p className="red">Error</p>
-          ) : (
-            this.renderList()
-          )}
+          {this.renderList()}
           <li className="list-item">
             <Link to="/add" type="button" className="add-button">
               <FontAwesomeIcon icon={faPlus} className="icon" />

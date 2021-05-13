@@ -1,5 +1,6 @@
 .stock-item {
   list-style-type: none;
+  position: relative;
 }
 .stock-list-button {
   border: 2px solid black;
