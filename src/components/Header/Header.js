@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Title } from "./title.svg";
+import { ReactComponent as Title } from "./vectorpaint.svg";
 import "../App/App.css";
 import "./Header.css";
 import TokenService from "../../services/token-service";
