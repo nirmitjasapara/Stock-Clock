@@ -10,7 +10,11 @@ export default class StockList extends Component {
   static contextType = CustomContext;
 
   renderEmpty() {
-    return <p className="grey">Please add some companies</p>;
+    return (
+      <p className="empty-list">
+        Please add some companies by clicking the plus button
+      </p>
+    );
   }
 
   renderLoading() {

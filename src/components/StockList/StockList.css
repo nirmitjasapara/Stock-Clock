@@ -27,10 +27,14 @@
   background: black;
   color: white;
 }
-.grey {
-  background-color: grey;
-  color: white;
-  padding: 10px;
+.empty-list {
+  font-size: 1.5em;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  color: lightgrey;
 }
 @media screen and (min-width: 700px) {
   .stocks-list {
