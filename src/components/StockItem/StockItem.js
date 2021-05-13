@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import CustomContext, { StatusCodes } from "../../contexts/CustomContext";
 import ApiService from "../../services/api-service";
 import "./StockItem.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default class StockItem extends Component {
   static contextType = CustomContext;
@@ -65,7 +67,7 @@ export default class StockItem extends Component {
       <li className="stock-item">
         {this.renderTicker(company, status)}
         <button onClick={this.handleDelete} className="delete-button">
-          Delete
+          <FontAwesomeIcon icon={faTrash} className="icon" />
         </button>
       </li>
     );
