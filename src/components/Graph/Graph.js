@@ -25,8 +25,13 @@ export default class Graph extends Component {
           marker: { color: "red" }
         }
       ],
-      layout: { width: 1000, height: 400, title, autosize: true }
+      layout: { width: window.innerWidth, height: 400, title }
     });
+    window.addEventListener("resize", e =>
+      this.setState({
+        layout: { width: window.innerWidth, height: 400, title }
+      })
+    );
   }
   componentDidUpdate() {
     if (!this.state.data[0]?.x?.length && this.props.x.length) {
@@ -41,7 +46,7 @@ export default class Graph extends Component {
             marker: { color: "red" }
           }
         ],
-        layout: { width: 1000, height: 400, title, autosize: true }
+        layout: { width: window.innerWidth, height: 400, title }
       });
     }
   }
