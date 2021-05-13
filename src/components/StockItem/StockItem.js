@@ -31,12 +31,17 @@ export default class StockItem extends Component {
           company.percent_change < 0 ? "red" : "green"
         }`}
       >
-        <p>{company.name}</p>
-        <p>{company.symbol}</p>
-        <br />
-        <p>{`${company.close} ${company.currency}`}</p>
-        <p>{`${company.change} ${company.currency}`}</p>
-        <p>{`${company.percent_change}%`}</p>
+        <div className="company-text">
+          <p>{company.name}</p>
+          <p>{company.symbol}</p>
+        </div>
+        <div className="company-price">
+          <p>{`${company.close} ${company.currency}`}</p>
+        </div>
+        <div className="company-change">
+          <p>{`${company.change} ${company.currency}`}</p>
+          <p>{`${company.percent_change}%`}</p>
+        </div>
       </Link>
     );
   }
