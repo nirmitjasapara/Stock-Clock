@@ -7,11 +7,14 @@
   flex-direction: column;
   margin-left: 10px;
 }
-.news-item img {
+.image-box {
   max-height: 10em;
   width: 20vw;
   height: auto;
   object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .news-link {
   display: flex;
