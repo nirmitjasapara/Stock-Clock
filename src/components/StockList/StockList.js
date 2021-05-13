@@ -23,11 +23,19 @@ export default class StockList extends Component {
 
   render() {
     return (
-      <section className="stock-list">
-        {this.context.error ? <p className="red">Error</p> : this.renderList()}
-        <Link to="/add" type="button" className="add-button">
-          <FontAwesomeIcon icon={faPlus} className="icon" />
-        </Link>
+      <section className="stocks">
+        <ul className="stocks-list">
+          {this.context.error ? (
+            <p className="red">Error</p>
+          ) : (
+            this.renderList()
+          )}
+          <li className="list-item">
+            <Link to="/add" type="button" className="add-button">
+              <FontAwesomeIcon icon={faPlus} className="icon" />
+            </Link>
+          </li>
+        </ul>
       </section>
     );
   }

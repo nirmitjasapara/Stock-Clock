@@ -1,8 +1,12 @@
-.stock-list {
+.stocks-list {
+  margin: 0;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.list-item {
+  list-style-type: none;
 }
 .add-button {
   cursor: pointer;
@@ -29,7 +33,7 @@
   padding: 10px;
 }
 @media screen and (min-width: 700px) {
-  .stock-list {
+  .stocks-list {
     display: flex;
     flex-flow: row wrap;
   }
