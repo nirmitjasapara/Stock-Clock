@@ -36,7 +36,7 @@ export default class NewsItem extends Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={newsitem.image} alt="news" />
+          <img src={newsitem.image} alt="No Image Available" />
           <div className="col-2">
             <h3>{newsitem.headline}</h3>
             <p>{this.dateTimeAdapter(newsitem.datetime)}</p>
