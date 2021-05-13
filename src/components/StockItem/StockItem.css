@@ -29,11 +29,19 @@
   background-color: #21ce99;
   color: white;
 }
+.delete-button {
+  position: absolute;
+  right: 0;
+}
 @media screen and (min-width: 700px) {
   .stock-list-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: initial;
+  }
+  .delete-button {
+    position: absolute;
+    bottom: 0;
   }
 }

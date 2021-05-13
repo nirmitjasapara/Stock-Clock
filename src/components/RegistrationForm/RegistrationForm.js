@@ -31,6 +31,13 @@ export default class RegistrationForm extends Component {
         this.setState({ error: res.error });
       });
   };
+  verifyPasswordChange = e => {
+    var pass = document.getElementById("RegistrationForm__password");
+    var vpass = document.getElementById("RegistrationForm__vpassword");
+    vpass.setCustomValidity(
+      vpass.value == pass.value ? "" : "Passwords don't match"
+    );
+  };
 
   render() {
     const { error } = this.state;
@@ -70,12 +77,23 @@ export default class RegistrationForm extends Component {
             id="RegistrationForm__password"
           ></Input>
         </div>
+        <div className="vpassword">
+          <label htmlFor="RegistrationForm__vpassword">
+            Verify Password <Required />
+          </label>
+          <Input
+            name="vpassword"
+            type="password"
+            required
+            onChange={this.verifyPasswordChange}
+            id="RegistrationForm__vpassword"
+          ></Input>
+        </div>
         <div className="nick_name">
           <label htmlFor="RegistrationForm__nick_name">Nickname</label>
           <Input
             name="nick_name"
             type="text"
-            required
             id="RegistrationForm__nick_name"
           ></Input>
         </div>
