@@ -13,13 +13,7 @@ export default class Graph extends Component {
     data: [],
     layout: {}
   };
-  resizeGraph = e => {
-    const { title } = this.props;
-    this.setState({
-      layout: { width: window.innerWidth, height: 400, title }
-    });
-  };
-  componentDidMount() {
+  recreateGraph = e => {
     const { x, y, title } = this.props;
     this.setState({
       data: [
@@ -31,28 +25,19 @@ export default class Graph extends Component {
           marker: { color: "red" }
         }
       ],
-      layout: { width: window.innerWidth, height: 400, title }
+      layout: { width: window.innerWidth - 40, height: 400, title }
     });
-    window.addEventListener("resize", this.resizeGraph);
+  };
+  componentDidMount() {
+    this.recreateGraph(null);
+    window.addEventListener("resize", this.recreateGraph);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeGraph);
+    window.removeEventListener("resize", this.recreateGraph);
   }
   componentDidUpdate() {
     if (!this.state.data[0]?.x?.length && this.props.x.length) {
-      const { x, y, title } = this.props;
-      this.setState({
-        data: [
-          {
-            x,
-            y,
-            type: "scatters",
-            mode: "lines",
-            marker: { color: "red" }
-          }
-        ],
-        layout: { width: window.innerWidth, height: 400, title }
-      });
+      this.recreateGraph(null);
     }
   }
   render() {
