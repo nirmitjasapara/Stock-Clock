@@ -13,6 +13,12 @@ export default class Graph extends Component {
     data: [],
     layout: {}
   };
+  resizeGraph = e => {
+    const { title } = this.props;
+    this.setState({
+      layout: { width: window.innerWidth, height: 400, title }
+    });
+  };
   componentDidMount() {
     const { x, y, title } = this.props;
     this.setState({
@@ -27,11 +33,10 @@ export default class Graph extends Component {
       ],
       layout: { width: window.innerWidth, height: 400, title }
     });
-    window.addEventListener("resize", e =>
-      this.setState({
-        layout: { width: window.innerWidth, height: 400, title }
-      })
-    );
+    window.addEventListener("resize", this.resizeGraph);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeGraph);
   }
   componentDidUpdate() {
     if (!this.state.data[0]?.x?.length && this.props.x.length) {
