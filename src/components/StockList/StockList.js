@@ -26,6 +26,7 @@ export default class StockList extends Component {
     else {
       const f = this.context.followings;
       return companies.map(company => {
+        if (!company.symbol) return "";
         const id = f.find(
           c => c.symbol.toLowerCase() === company.symbol.toLowerCase()
         ).id;
