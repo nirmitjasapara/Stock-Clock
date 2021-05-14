@@ -25,7 +25,20 @@ export default class Graph extends Component {
           marker: { color: "red" }
         }
       ],
-      layout: { width: window.innerWidth - 40, height: 400, title }
+      layout: {
+        width: window.innerWidth - 40,
+        height: 400,
+        title,
+        plot_bgcolor: "#000",
+        paper_bgcolor: "#000",
+        font: {
+          color: "#fff"
+        },
+        margin: {
+          l: "40",
+          b: "40"
+        }
+      }
     });
   };
   componentDidMount() {
