@@ -4,75 +4,98 @@ import check from "./check.svg";
 import phone from "./iphoneoutline.svg";
 import logo from "./logo.png";
 import "./LandingPage.css";
+import i18n from "i18next";
+import { initReactI18next, withTranslation, useTranslation } from "react-i18next";
+import { Suspense } from "react";
+import { translationEn, translationFr } from "./translations.js";
 
-export default class LandingPage extends Component {
+
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: { translation: translationEn },
+      fr: { translation: translationFr },
+    },
+    lng: "en",
+    fallbackLng: "en",
+    keySeparator: ".",
+    interpolation: { escapeValue: false },
+  });
+
+
+
+
+class LandingPage extends Component {
   render() {
+    const { t } = this.props;
+    const onChange = (event) => {
+      i18n.changeLanguage(event.target.value);
+    }
     return (
+      <Suspense fallback="Loading...">
       <main className="landing-page-main">
+        <select name="language" onChange={onChange}>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+        </select>
         <section id="title">
           <div className="logo-box">
             <img src={logo} alt="Stock Clock" className="logo" />
             <h1>Stock Clock</h1>
           </div>
           <p>
-            A better way to simplify and aggregate all your stock information
-            into one platform. Stock Clock opens the door to a simple, clean,
-            and streamlined stock tracking experience.
+            {t('block1')}
           </p>
         </section>
         <section id="description">
-          <h1>Personalize</h1>
+          <h1>{t('block2.header')}</h1>
           <p>
-            Personalize your experience with our flexible and customizable
-            interface. Easily add or remove stocks to a list of tracked
-            companies or utilize the search function to quickly finding
-            companies you want to track and add them to your personal list.
+          {t('block2.p1')}
           </p>
           <div className="step-container">
             <div className="step">
               <img src={check} alt="check" className="check" />
-              <h2>Customize</h2>
-              <p>your own list of tracked companies and tickers</p>
+              <h2>{t('block2.columns.title1')}</h2>
+              <p>{t('block2.descriptions.title1')}</p>
             </div>
             <div className="step">
               <img src={check} alt="check" className="check" />
-              <h2>Search</h2>
-              <p>for listed companies on multiple exchanges quickly</p>
+              <h2>{t('block2.columns.title2')}</h2>
+              <p>{t('block2.descriptions.title2')}</p>
             </div>
             <div className="step">
               <img src={check} alt="check" className="check" />
-              <h2>Visualize</h2>
-              <p>trends andhistorical data on stock prices through graphs</p>
+              <h2>{t('block2.columns.title3')}</h2>
+              <p>{t('block2.descriptions.title3')}</p>
             </div>
           </div>
         </section>
         <section id="feature">
           <img className="phone" src={phone} alt="newsfeed" />
           <div className="feature_text">
-            <h1>NewsFeed Integration</h1>
+            <h1>{t('block3.header')}</h1>
             <p>
-              Not only will you be able to just see trends and prices, but our
-              app offers integration with social media and news services for you
-              to be able to study the market even more effectively. Choose your
-              own sources to follow, or simply click on a time period and our
-              app will automatically pull relevant news from that time!
+            {t('block3.description')}
             </p>
           </div>
         </section>
         <section id="start">
-          <h1>What are you waiting for?</h1>
+          <h1>{t('block4.header')}</h1>
           <div className="button-box">
             <p>
-              {" "}
-              Let Stock Clock help you on your investing journey today and watch
-              your stocks shoot through the moon.
+            {t('block4.description')}
             </p>
             <Link to="/home" type="button" className="get-started-button">
-              Get Started
+            {t('block4.button')}
             </Link>
           </div>
         </section>
       </main>
+      </Suspense>
     );
   }
 }
+
+export default withTranslation() (LandingPage)
