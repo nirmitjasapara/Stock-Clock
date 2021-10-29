@@ -2,6 +2,10 @@ import TokenService from "../services/token-service";
 import config from "../config";
 
 const ApiService = {
+  /**
+   * Fetches real time stock prices from the server.
+   * @input a list of symbols
+   */
   getQuotes(companies) {
     const symbolstring = companies.map(company => company.symbol).join();
     const number_of_companies = companies.length;
